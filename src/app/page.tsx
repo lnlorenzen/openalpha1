@@ -456,7 +456,7 @@ export default function LandingPage() {
               >
                 <CardContent className="p-6 flex flex-col justify-between h-full">
                   <p className="text-gray-600 mb-4 italic text-sm">
-                    "{testimonial.text}"
+                  <p>&quot;{testimonial.text}&quot;</p>
                   </p>
                   <p className="text-[#0a1ae8] font-semibold">
                     {testimonial.author}
