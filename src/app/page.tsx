@@ -255,7 +255,7 @@ export default function LandingPage() {
     { name: "Vest", src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/vestlogo-PxfyDQ77iZHTxr2KjX4YxCebeh8aAK.svg" },
     { name: "Tenderize", src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Tenderize-3oR9UnJCbUILt98CY5wfsiaYmVp8fS.svg" },
     { name: "peaq", src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/peaq-JTEDmOdohqFMFAfkjm56ctm96fTuFs.svg" },
-    { name: "LaunchPoint", src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/launchpoint-0ZbOe0ukY5rP3BddPOYHiCpnSFXxOX.png" },
+    { name: "LaunchPoint", src: "/images/launchpoint.png" },
     { name: "Bitflow", src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/bitflow-uSwSQpWd31boldtFKTX6JWl58CmiRe.svg" },
     { name: "SolanaID", src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/solanaID-RJtb9CYBqK5WlQgUYVz2SkcIxy3OGj.png" },
     { name: "Shardeum", src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/shardeum-9MKYYoqa1vK7uALwn4diMFJEuZ0Uu6.svg" },
