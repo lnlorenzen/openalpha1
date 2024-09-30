@@ -1,7 +1,6 @@
 'use client'
 
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
 import Link from "next/link"
 import Image from "next/image"
@@ -14,6 +13,7 @@ const poppins = Poppins({
   weight: ['300', '400', '500', '600', '700'],
   variable: '--font-poppins',
 })
+
 const InteractiveNetworkGraph = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
@@ -255,7 +255,7 @@ export default function LandingPage() {
     { name: "Vest", src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/vestlogo-PxfyDQ77iZHTxr2KjX4YxCebeh8aAK.svg" },
     { name: "Tenderize", src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Tenderize-3oR9UnJCbUILt98CY5wfsiaYmVp8fS.svg" },
     { name: "peaq", src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/peaq-JTEDmOdohqFMFAfkjm56ctm96fTuFs.svg" },
-    { name: "LaunchPoint", src: "/images/launchpoint.png" },
+    { name: "LaunchPoint", src: "/launchpoint.png" }, // Aktualisiert, um das Bild aus dem public-Ordner zu verwenden
     { name: "Bitflow", src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/bitflow-uSwSQpWd31boldtFKTX6JWl58CmiRe.svg" },
     { name: "SolanaID", src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/solanaID-RJtb9CYBqK5WlQgUYVz2SkcIxy3OGj.png" },
     { name: "Shardeum", src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/shardeum-9MKYYoqa1vK7uALwn4diMFJEuZ0Uu6.svg" },
@@ -291,6 +291,13 @@ export default function LandingPage() {
     }
   }
 
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId)
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   return (
     <div className={`min-h-screen bg-white text-gray-800 relative overflow-hidden ${poppins.variable} font-sans`}>
       <InteractiveNetworkGraph />
@@ -300,7 +307,7 @@ export default function LandingPage() {
         <nav className="flex justify-between items-center">
           <Link href="/" className="flex items-center">
             <Image 
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1-moXnnbq4k1kQ3ZvNAXknd1om2FCJpY.svg" 
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/header_logo-DEGgaaueYu8LB7kutKUSfMmYK5l0cp.svg" 
               alt="Open Alpha Logo" 
               width={200} 
               height={50} 
@@ -308,18 +315,15 @@ export default function LandingPage() {
             />
           </Link>
           <div className="space-x-4">
-            <Link href="#about" className="hover:text-[#0a1ae8]">
-              About
+            <Link href="about" className="hover:text-[#0a1ae8]">
+              About Us
             </Link>
-            <Link href="#portfolio" className="hover:text-[#0a1ae8]">
+            <button onClick={() => scrollToSection('portfolio')} className="hover:text-[#0a1ae8]">
               Portfolio
-            </Link>
-            <Link href="#team" className="hover:text-[#0a1ae8]">
-              Team
-            </Link>
-            <Link href="#insights" className="hover:text-[#0a1ae8]">
-              Insights
-            </Link>
+            </button>
+            <button onClick={() => scrollToSection('testimonials')} className="hover:text-[#0a1ae8]">
+              Testimonials
+            </button>
           </div>
         </nav>
       </header>
@@ -405,11 +409,11 @@ export default function LandingPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
             {offerCardContent.map((card, index) => (
               <Card key={index} className="overflow-hidden">
-               <div className="bg-[#0a1ae8] p-6 flex justify-center items-center rounded-t-lg">
-                 <div className="text-white">
-    {card.icon}
-  </div>
-</div>
+                <div className="bg-[#0a1ae8] p-6 flex justify-center items-center">
+                  <div className="text-white">
+                    {card.icon}
+                  </div>
+                </div>
                 <CardContent className="p-6 bg-white">
                   <h3 className="text-xl font-semibold mb-2">{card.title}</h3>
                   <p className="text-sm text-gray-600">{card.description}</p>
@@ -421,21 +425,23 @@ export default function LandingPage() {
       </section>
 
       {/* Our Portfolio Section */}
-      <section className="py-20 relative z-10 bg-[#282731]">
+      <section id="portfolio" className="py-20 relative z-10 bg-[#282731]">
         <div className="container mx-auto">
           <h2 className="text-7xl font-light text-left mb-12 text-white">our portfolio</h2>
           <Card className="bg-[#282731] border-none shadow-none">
             <CardContent className="p-8">
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
                 {portfolioLogos.map((logo, index) => (
-                  <div key={index} className="flex items-center justify-center bg-[#282731] rounded-lg p-4">
-                    <Image 
-                      src={logo.src} 
-                      alt={`${logo.name} logo`}
-                      width={150}
-                      height={75}
-                      className="max-w-full h-auto"
-                    />
+                  <div key={index} className="flex items-center justify-center bg-[#282731] rounded-lg p-4 overflow-hidden">
+                    <div className="relative w-full h-0 pb-[50%] transition-transform duration-300 ease-in-out transform hover:scale-110">
+                      <Image 
+                        src={logo.src} 
+                        alt={`${logo.name} logo`}
+                        layout="fill"
+                        objectFit="contain"
+                        className="absolute top-0 left-0 w-full h-full"
+                      />
+                    </div>
                   </div>
                 ))}
               </div>
@@ -445,7 +451,7 @@ export default function LandingPage() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 relative z-10 bg-white bg-opacity-80">
+      <section id="testimonials" className="py-20 relative z-10 bg-white bg-opacity-80">
         <div className="container mx-auto">
           <h2 className="text-7xl font-light text-left mb-12 text-[#0a1ae8]">testimonials</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
@@ -456,7 +462,7 @@ export default function LandingPage() {
               >
                 <CardContent className="p-6 flex flex-col justify-between h-full">
                   <p className="text-gray-600 mb-4 italic text-sm">
-                  <p>&quot;{testimonial.text}&quot;</p>
+                    &quot;{testimonial.text}&quot;
                   </p>
                   <p className="text-[#0a1ae8] font-semibold">
                     {testimonial.author}
@@ -474,7 +480,7 @@ export default function LandingPage() {
           <div className="flex flex-wrap justify-between -mx-4">
             <div className="w-full md:w-1/3 px-4 mb-8 md:mb-0">
               <Image 
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3-8W9eaS7AXDlhdZjeUZJd9KtmzAS3HR.svg" 
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/footer_logo-OsetLdnDEkvFn7SIVxhWSxjZakqbw8.svg" 
                 alt="Open Alpha Logo" 
                 width={200} 
                 height={53} 
@@ -498,31 +504,35 @@ export default function LandingPage() {
             </div>
             <div className="w-full md:w-1/3 px-4">
               <h3 className="text-lg font-bold mb-4">sign up for our newsletter</h3>
-              <p className="mb-6">
-                Stay in the loop about our activities, investments and updates. no
-                commitment, no bullshit.
-              </p>
-              <div className="flex mb-6">
-                <Input 
-                  type="email" 
-                  placeholder="youremail@email.com" 
-                  className="mr-2 bg-white text-gray-800"
+              <div className="mb-6">
+                <iframe 
+                  src="https://embeds.beehiiv.com/ea969963-88ac-498b-bc59-3648ea022980?slim=true" 
+                  data-test-id="beehiiv-embed" 
+                  height="52" 
+                  style={{
+                    margin: 0,
+                    borderRadius: 0,
+                    backgroundColor: 'transparent',
+                    width: '100%',
+                    border: 'none'
+                  }}
+                  title="Newsletter Subscription"
                 />
-                <Button variant="outline" className="text-white border-white hover:bg-white hover:text-[#0a1ae8]">
-                  subscribe
-                </Button>
               </div>
               <div>
                 <h4 className="text-lg font-bold mb-2">Connect with us</h4>
                 <div className="flex space-x-4">
                   <Link href="https://linkedin.com/company/openalpha" className="text-white hover:text-[#0a1ae8]">
                     <Linkedin size={24} />
+                    <span className="sr-only">LinkedIn</span>
                   </Link>
                   <Link href="https://twitter.com/openalpha" className="text-white hover:text-[#0a1ae8]">
                     <Twitter size={24} />
+                    <span className="sr-only">Twitter</span>
                   </Link>
                   <Link href="https://t.me/openalpha" className="text-white hover:text-[#0a1ae8]">
                     <Send size={24} />
+                    <span className="sr-only">Telegram</span>
                   </Link>
                 </div>
               </div>
